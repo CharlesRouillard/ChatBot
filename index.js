@@ -8,7 +8,7 @@ function SayJoke(){
 	
 }
 
-function response(msg){
+function response(msg,isTag){
 	cont = msg.content.toLowerCase();
 	if(cont.includes("bonjour") || cont.includes('salut') || cont.includes('hello') || cont.includes('hi')){
 		msg.reply('Hey ! Que puis-je faire pour vous ?');
@@ -22,7 +22,10 @@ function response(msg){
     	}).catch(console.log);
 	}
 	else if(cont.includes('!meteo')){
-		city = cont.split(" ")[1];
+		if(isTag)
+			city = cont.split(" ")[2];
+		else
+			city = cont.split(" ")[1];
 		axios.request({
 	        url: 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + process.env.WEATHER_TOKEN,
 	        method: 'GET'
@@ -49,12 +52,12 @@ client.on('ready', () => {
 client.on('message', msg => {
 	if(msg.channel.type === 'dm' && !msg.author.bot){
 		//this is a direct message, response
-		response(msg);
+		response(msg,false);
 	}
 	else if(msg.channel.type === 'text'){
 		if(msg.mentions.users.get(client.user.id) != undefined){
 			//on a été tagué
-			response(msg);
+			response(msg,true);
 		}
 	}
 });
