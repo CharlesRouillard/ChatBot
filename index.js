@@ -4,10 +4,6 @@ var axios = require('axios');
 var et = require('html-entities').AllHtmlEntities;
 const client = new Discord.Client();
 
-function SayJoke(){
-	
-}
-
 function response(msg,isTag){
 	cont = msg.content.toLowerCase();
 	if(cont.includes("bonjour") || cont.includes('salut') || cont.includes('hello') || cont.includes('hi')){
@@ -22,23 +18,36 @@ function response(msg,isTag){
     	}).catch(console.log);
 	}
 	else if(cont.includes('!meteo')){
+		var city = undefined;
+		spl = cont.split(" ");
 		if(isTag)
-			city = cont.split(" ")[2];
-		else
-			city = cont.split(" ")[1];
-		axios.request({
-	        url: 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + process.env.WEATHER_TOKEN,
-	        method: 'GET'
-    	}).then(function(response){
-    		//console.log(response)
-    		var temp = (response.data.main.temp-273.15);
-    		temp = Math.round(temp *10)/10;
-    		var tempMin = (response.data.main.temp_min-273.15);
-    		tempMin = Math.round(tempMin *10)/10;
-    		var tempMax = (response.data.main.temp_max-273.15);
-    		tempMax = Math.round(tempMax *10)/10;
-        	msg.reply("In " + response.data.name + " the current temperature is " + temp + "°C\nThe minimal temperature is " + tempMin + "°C and the maximal is " + tempMax + "°C\n");
-    	}).catch(console.log);
+		{
+			if(spl.length == 3)
+				city = spl[2];
+		}
+		else{
+			if(spl.length == 2)
+				city = spl[1];
+		}
+
+		if(city){
+			axios.request({
+		        url: 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + process.env.WEATHER_TOKEN,
+		        method: 'GET'
+	    	}).then(function(response){
+	    		//console.log(response)
+	    		var temp = (response.data.main.temp-273.15);
+	    		temp = Math.round(temp *10)/10;
+	    		var tempMin = (response.data.main.temp_min-273.15);
+	    		tempMin = Math.round(tempMin *10)/10;
+	    		var tempMax = (response.data.main.temp_max-273.15);
+	    		tempMax = Math.round(tempMax *10)/10;
+	        	msg.reply("In " + response.data.name + " the current temperature is " + temp + "°C\nThe minimal temperature is " + tempMin + "°C and the maximal is " + tempMax + "°C\n");
+	    	}).catch(console.log);
+	    }
+	    else{
+	    	msg.reply('Commande météo incorrect. Je comprend seulement : !meteo <city>\nJe comprend également : !blague');
+	    }
 	}
 	else{
 		msg.reply('Je n\'ai pas compris votre demande');
