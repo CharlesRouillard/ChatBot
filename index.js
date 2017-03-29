@@ -7,7 +7,7 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
-	if(msg.channel.type === 'dm'){
+	if(msg.channel.type === 'dm' && msg.channel.recipient.bot == false){
 		//this is a direct message, response
 		msg.reply('El pueblo unido jamas sera vencido');
 	}
