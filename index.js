@@ -23,6 +23,7 @@ function response(msg){
 	}
 	else if(cont.includes('!meteo')){
 		city = cont.split(" ")[1];
+		console.log("CITYYYYYYYYYYYY " + city);
 		axios.request({
 	        url: 'api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + process.env.WEATHER_TOKEN,
 	        method: 'GET'
