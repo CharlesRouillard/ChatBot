@@ -12,7 +12,6 @@ client.on('message', msg => {
 		msg.reply('El pueblo unido jamas sera vencido');
 	}
 	else if(msg.channel.type === 'text'){
-		console.log("=================================== " + client.user.id);
 		if(msg.mentions.users.get(client.user.id) != undefined){
 			//on a été tagué
 			msg.reply('D\'ou tu me tagues ???');
@@ -21,7 +20,9 @@ client.on('message', msg => {
 });
 
 client.on('presenceUpdate', function(oldMember, newMember) {
-	console.log(newMember);
+	if(newMember.user.username == 'bramas'){
+		newMember.sendMessage("Bonjour maitre, je suis le bot de Charles et David, que puis-je faire pour vous aujourd'hui ?");
+	}
 });
 
 client.login(process.env.DISCORD_TOKEN);
