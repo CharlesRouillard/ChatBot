@@ -32,16 +32,30 @@ function response(msg,isTag){
 
 		if(city){
 			axios.request({
-		        url: 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + process.env.WEATHER_TOKEN,
+		        url: 'http://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=' + process.env.WEATHER_TOKEN,
 		        method: 'GET'
 	    	}).then(function(response){
-	    		var temp = (response.data.main.temp-273.15);
-	    		temp = Math.round(temp *10)/10;
-	    		var tempMin = (response.data.main.temp_min-273.15);
-	    		tempMin = Math.round(tempMin *10)/10;
-	    		var tempMax = (response.data.main.temp_max-273.15);
-	    		tempMax = Math.round(tempMax *10)/10;
-	        	msg.reply("In " + response.data.name + " the current temperature is " + temp + "°C\nThe minimal temperature is " + tempMin + "°C and the maximal is " + tempMax + "°C\n");
+
+	    		var date = new Date();
+				var dd = date.getDate()+1;
+				var mm = date.getMonth()+1;
+				var yy = date.getFullYear();
+				if(dd<10){
+				    dd='0'+dd;
+				} 
+				if(mm<10){
+				    mm='0'+mm;
+				} 
+				var today = yy+'-'+mm+'-'+dd + ' 12:00:00';
+	    		if(response.data.dt_txt == today){
+	    			var temp = (response.data.main.temp-273.15);
+		    		temp = Math.round(temp *10)/10;
+		    		var tempMin = (response.data.main.temp_min-273.15);
+		    		tempMin = Math.round(tempMin *10)/10;
+		    		var tempMax = (response.data.main.temp_max-273.15);
+		    		tempMax = Math.round(tempMax *10)/10;
+		        	msg.reply("In " + response.data.name + " the current temperature is " + temp + "°C\nThe minimal temperature is " + tempMin + "°C and the maximal is " + tempMax + "°C\n");
+	    		}
 	    	}).catch(function(fail){
 	    		msg.reply('Ville inconnu ou incorrect');
 	    	});
