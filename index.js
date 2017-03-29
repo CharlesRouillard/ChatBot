@@ -5,12 +5,7 @@ var et = require('html-entities').AllHtmlEntities;
 const client = new Discord.Client();
 
 function SayJoke(){
-	axios.request({
-        url: 'http://www.chucknorrisfacts.fr//api/get?data=tri:alea;nb:1;type:txt',
-        method: 'GET'
-    }).then(function(response){
-        return et.decode(response.data[0].fact);
-    }).catch(console.log);
+	
 }
 
 function response(msg){
@@ -19,7 +14,12 @@ function response(msg){
 		msg.reply('Hey ! Que puis-je faire pour vous ?');
 	}
 	else if(cont == '!blague'){
-		msg.reply(SayJoke());
+		axios.request({
+	        url: 'http://www.chucknorrisfacts.fr//api/get?data=tri:alea;nb:1;type:txt',
+	        method: 'GET'
+    	}).then(function(response){
+        	msg.reply(et.decode(response.data[0].fact));
+    	}).catch(console.log);
 	}
 	else{
 		msg.reply('Je n\'ai pas compris votre demande');
