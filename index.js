@@ -28,10 +28,10 @@ function response(msg){
 	        method: 'GET'
     	}).then(function(response){
     		//console.log(response)
-    		temp = (response.data.main.temp-273.15);
-    		tempMin = (response.data.main.temp_min-273.15);
-    		tempMax = (response.data.main.temp_max-273.15);
-        	msg.reply("In " + data.name + " the current temperature is " + temp + "°C\nThe minimal temperature is " + tempMin + "°C and the maximal is " + tempMax + "°C\n");
+    		temp = (response.main.temp-273.15);
+    		tempMin = (response.main.temp_min-273.15);
+    		tempMax = (response.main.temp_max-273.15);
+        	msg.reply("In " + response.name + " the current temperature is " + temp + "°C\nThe minimal temperature is " + tempMin + "°C and the maximal is " + tempMax + "°C\n");
     	}).catch(console.log);
 	}
 	else{
