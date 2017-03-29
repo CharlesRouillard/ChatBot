@@ -13,7 +13,7 @@ function response(msg){
 	if(cont.includes("bonjour") || cont.includes('salut') || cont.includes('hello') || cont.includes('hi')){
 		msg.reply('Hey ! Que puis-je faire pour vous ?');
 	}
-	else if(cont == '!blague'){
+	else if(cont.includes('!blague')){
 		axios.request({
 	        url: 'http://www.chucknorrisfacts.fr//api/get?data=tri:alea;nb:1;type:txt',
 	        method: 'GET'
