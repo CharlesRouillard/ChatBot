@@ -9,7 +9,7 @@ client.on('message', msg => {
   if (msg.content === 'ping') {
     msg.reply('Pong!');
   }
-  console.log(message);
+  console.log(msg);
 });
 
 client.on('presenceUpdate', function(oldMember, newMember) {
