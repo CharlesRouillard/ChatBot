@@ -7,11 +7,11 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
-	if(msg.channel.DMChannel.type === 'dm'){
+	if(msg.channel.type === 'dm'){
 		//this is a direct message, response
 		msg.reply('El pueblo unido jamas sera vencido');
 	}
-	else if(msg.channel.TextChannel.type === 'text'){
+	else if(msg.channel.type === 'text'){
 		console.log("=================================== " + client.user.id);
 		if(msg.mentions.users.get(client.user.id) != undefined){
 			//on a été tagué
