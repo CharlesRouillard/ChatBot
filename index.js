@@ -23,9 +23,9 @@ function response(msg){
 	}
 	else if(cont.includes('!meteo')){
 		city = cont.split(" ")[1];
-		console.log('api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + process.env.WEATHER_TOKEN);
+		console.log('http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + process.env.WEATHER_TOKEN);
 		axios.request({
-	        url: 'api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + process.env.WEATHER_TOKEN,
+	        url: 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + process.env.WEATHER_TOKEN,
 	        method: 'GET'
     	}).then(function(response){
         	msg.reply(response.temp);
