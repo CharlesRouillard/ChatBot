@@ -28,7 +28,7 @@ function response(msg){
 	        url: 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + process.env.WEATHER_TOKEN,
 	        method: 'GET'
     	}).then(function(response){
-        	msg.reply(response.temp);
+        	msg.reply(response.data.temp);
     	}).catch(console.log);
 	}
 	else{
