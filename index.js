@@ -28,9 +28,12 @@ function response(msg){
 	        method: 'GET'
     	}).then(function(response){
     		//console.log(response)
-    		temp = (response.data.main.temp-273.15);
-    		tempMin = (response.data.main.temp_min-273.15);
-    		tempMax = (response.data.main.temp_max-273.15);
+    		var temp = (response.data.main.temp-273.15);
+    		temp = Math.round(temp *10)/10;
+    		var tempMin = (response.data.main.temp_min-273.15);
+    		tempMin = Math.round(tempMin *10)/10;
+    		var tempMax = (response.data.main.temp_max-273.15);
+    		tempMax = Math.round(tempMax *10)/10;
         	msg.reply("In " + response.data.name + " the current temperature is " + temp + "°C\nThe minimal temperature is " + tempMin + "°C and the maximal is " + tempMax + "°C\n");
     	}).catch(console.log);
 	}
