@@ -35,7 +35,7 @@ function response(msg,isTag){
 		        url: 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + process.env.WEATHER_TOKEN,
 		        method: 'GET'
 	    	}).then(function(response){
-	    		if(response.data.cod == 404){
+	    		if(response.data.cod == '404' || response.data.cod == '502'){
 	    			msg.reply('Ville inconnu ou incorrect');
 	    		}
 	    		else{
