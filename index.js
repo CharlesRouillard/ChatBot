@@ -2,6 +2,21 @@ const Discord = require("discord.js");
 var express = require('express');
 const client = new Discord.Client();
 
+function responseToDM(msg){
+	cont = msg.content.toLowerCase();
+	if(cont.includes("bonjour") || cont.includes('salut') || cont.includes('hello') || cont.includes('hi')){
+		msg.reply('Hey ! Que puis-je faire pour vous ?');
+	}
+	else{
+		msg.reply('Je n\'ai pas compris votre demande');
+	}
+}
+
+function responseToTag(msg){
+	cont = msg.content.toLowerCase();
+	msg.reply('Cool ton tag !');
+}
+
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.username}!`);
 });
@@ -9,12 +24,12 @@ client.on('ready', () => {
 client.on('message', msg => {
 	if(msg.channel.type === 'dm' && !msg.author.bot){
 		//this is a direct message, response
-		msg.reply('El pueblo unido jamas sera vencido');
+		responseToDM(msg);
 	}
 	else if(msg.channel.type === 'text'){
 		if(msg.mentions.users.get(client.user.id) != undefined){
 			//on a été tagué
-			msg.reply('D\'ou tu me tagues ???');
+			responseToTag(msg);
 		}
 	}
 });
