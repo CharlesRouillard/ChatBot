@@ -1,0 +1,35 @@
+var axios = require('axios');
+
+module.exports = function(msg,isTag){
+	var city = undefined;
+	spl = cont.split(" ");
+	if(isTag)
+	{
+		if(spl.length == 3)
+			city = spl[2];
+	}
+	else{
+		if(spl.length == 2)
+			city = spl[1];
+	}
+	if(city){
+		axios.request({
+			//current weather
+	        url: 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + process.env.WEATHER_TOKEN,
+	        method: 'GET'
+		}).then(function(response){
+			var temp = (response.data.main.temp-273.15);
+			temp = Math.round(temp *10)/10;
+			var tempMin = (response.data.main.temp_min-273.15);
+			tempMin = Math.round(tempMin *10)/10;
+			var tempMax = (response.data.main.temp_max-273.15);
+			tempMax = Math.round(tempMax *10)/10;
+	    	msg.reply("In " + response.data.name + " the current temperature is " + temp + "°C\nThe minimal temperature is " + tempMin + "°C and the maximal is " + tempMax + "°C\n");
+		}).catch(function(fail){
+			msg.reply('Un problème est survenu (La ville est peut être erroné ou incorrect)');
+		});
+	}
+	else{
+		msg.reply('Commande météo incorrect. Je comprend seulement : !meteo <city>\nJe comprend également : !blague et !image <query>');
+	}
+}
