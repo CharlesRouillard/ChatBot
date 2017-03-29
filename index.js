@@ -20,8 +20,7 @@ client.on('message', msg => {
 });
 
 client.on('presenceUpdate', function(oldMember, newMember) {
-	console.log(newMember.presence)
-	if(newMember.user.username == 'bramas'){
+	if(newMember.user.username == 'bramas' && newMember.presence.status == 'online'){
 		newMember.sendMessage("Bonjour maitre, je suis le bot de Charles et David, que puis-je faire pour vous aujourd'hui ?");
 	}
 });
