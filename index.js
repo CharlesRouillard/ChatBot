@@ -27,8 +27,11 @@ function response(msg){
 	        url: 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + process.env.WEATHER_TOKEN,
 	        method: 'GET'
     	}).then(function(response){
-    		console.log(response)
-        	//msg.reply(response);
+    		//console.log(response)
+    		temp = (response.data.main.temp-273.15);
+    		tempMin = (response.data.main.temp_min-273.15);
+    		tempMax = (response.data.main.temp_max-273.15);
+        	msg.reply("In " + data.name + " the current temperature is " + temp + "°C\nThe minimal temperature is " + tempMin + "°C and the maximal is " + tempMax + "°C\n");
     	}).catch(console.log);
 	}
 	else{
