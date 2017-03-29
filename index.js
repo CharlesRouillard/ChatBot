@@ -1,20 +1,29 @@
 const Discord = require("discord.js");
 var express = require('express');
+var axios = require('axios');
+var et = require('html-entities').AllHtmlEntities;
 const client = new Discord.Client();
 
-function responseToDM(msg){
+function SayJoke(){
+	axios.request({
+        url: 'http://www.chucknorrisfacts.fr//api/get?data=tri:alea;nb:1;type:txt',
+        method: 'GET'
+    }).then(function(response){
+        return et.decode(response.data[0].fact);
+    }).catch(console.log);
+}
+
+function response(msg){
 	cont = msg.content.toLowerCase();
 	if(cont.includes("bonjour") || cont.includes('salut') || cont.includes('hello') || cont.includes('hi')){
 		msg.reply('Hey ! Que puis-je faire pour vous ?');
 	}
+	else if(cont == '!blague'){
+		msg.reply(SayJoke());
+	}
 	else{
 		msg.reply('Je n\'ai pas compris votre demande');
 	}
-}
-
-function responseToTag(msg){
-	cont = msg.content.toLowerCase();
-	msg.reply('Cool ton tag !');
 }
 
 client.on('ready', () => {
@@ -24,12 +33,12 @@ client.on('ready', () => {
 client.on('message', msg => {
 	if(msg.channel.type === 'dm' && !msg.author.bot){
 		//this is a direct message, response
-		responseToDM(msg);
+		response(msg);
 	}
 	else if(msg.channel.type === 'text'){
 		if(msg.mentions.users.get(client.user.id) != undefined){
 			//on a été tagué
-			responseToTag(msg);
+			response(msg);
 		}
 	}
 });
