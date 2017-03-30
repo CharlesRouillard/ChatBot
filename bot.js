@@ -57,7 +57,7 @@ module.exports = function(params){
 			iss(msg);
 		}
 		else if(cont.includes('!yoda')){
-			yoda(msg,isTag)
+			yoda(msg,isTag);
 		}
 		else{
 			/*if(cont.includes("bonjour") || cont.includes('salut') || cont.includes('hello') || cont.includes('hi')){

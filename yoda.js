@@ -1,19 +1,11 @@
 var axios = require('axios');
 
 module.exports = function(msg, isTag){
-	var sentence = undefined;
-	spl = cont.split(" ");
-	if(isTag)
-	{
-		if(spl.length == 3)
-			sentence = spl[2];
-	}
-	else{
-		if(spl.length == 2)
-			sentence = spl[1];
-	}
-
-	if(sentence){
+	var cmd = cont.substring(0,5);
+	var sentence = cont.substring(6,cont.length-1);
+	console.log(cmd);
+	console.log(sentence);
+	if(cmd == '!yoga '){
 		axios.request({
 		    url: 'https://yoda.p.mashape.com/yoda?sentence=' + sentence,
 		    method: 'GET',
@@ -26,6 +18,6 @@ module.exports = function(msg, isTag){
 		}).catch(console.log);
 	}
 	else{
-		msg.reply('Commande météo incorrect. Je comprend seulement : !yoda <sentence>\nJe comprend également : !blague, !meteo <city>, !iss et !image <query>');
+		msg.reply('Commande !yoda incorrect. Je comprend seulement : !yoda <sentence>\nJe comprend également : !blague, !meteo <city>, !iss et !image <query>');
 	}
 }
