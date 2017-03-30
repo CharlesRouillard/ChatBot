@@ -3,11 +3,9 @@ var axios = require('axios');
 module.exports = function(msg, isTag){
 	if(isTag)
 	{
+		//pas terrible
 		var cmd = cont.substring(22,28);
 		var sentence = cont.substring(28,cont.length);
-		console.log(cmd);
-		console.log(sentence);
-		console.log(cmd == '!yoda ');
 	}
 	else
 	{
@@ -24,7 +22,6 @@ module.exports = function(msg, isTag){
 		      	Accept: 'text/plain'
 	   		}
 		}).then(function(response){
-			console.log(response);
 			msg.reply(response.data);
 		}).catch(function(fail){
 			msg.reply('Erreur lors de l\'éxécution de la commande !yoda');
