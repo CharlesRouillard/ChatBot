@@ -3,8 +3,8 @@ var axios = require('axios');
 module.exports = function(msg, isTag){
 	if(isTag)
 	{
-		var cmd = cont.substring(15,21);
-		var sentence = cont.substring(21,cont.length);
+		var cmd = cont.substring(22,28);
+		var sentence = cont.substring(28,cont.length);
 		console.log(cmd);
 		console.log(sentence);
 		console.log(cmd == '!yoda ');
