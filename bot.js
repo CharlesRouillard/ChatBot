@@ -5,6 +5,7 @@ var blague = require('./blague.js');
 var meteo = require('./meteo.js');
 var image = require('./image.js');
 var iss = require('./iss.js');
+var yoda = require('./yoda.js');
 
 module.exports = function(params){
     var self = this;
@@ -54,6 +55,9 @@ module.exports = function(params){
 		}
 		else if(cont.includes('!iss')){
 			iss(msg);
+		}
+		else if(cont.includes('!yoda')){
+			yoda(msg,isTag)
 		}
 		else{
 			/*if(cont.includes("bonjour") || cont.includes('salut') || cont.includes('hello') || cont.includes('hi')){

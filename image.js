@@ -35,7 +35,10 @@ module.exports = function(msg,isTag){
 			})*/
 			msg.reply(response.data.data[rand].link);
 		}).catch(function(fail){
-			msg.reply('Erreur lors de l\'éxécution de la commande !image');
+			msg.reply('Erreur lors de l\'éxécution de la commande !image <query>');
 		});
+	}
+	else{
+		msg.reply('Commande météo incorrect. Je comprend seulement : !image <query>\nJe comprend également : !blague, !meteo <city>, !iss et !yoda <sentence>');
 	}
 }

@@ -15,7 +15,11 @@ module.exports = function(msg,isTag){
     		method: 'GET'
     	}).then(function(resp){
     		msg.reply(resp.config.url);
-    	}).catch(console.log)
+    	}).catch(function(fail){
+    		msg.reply('Erreur lors de l\'éxécution de la commande !iss')
+    	})
 
-	}).catch(console.log);
+	}).catch(function(fail){
+		msg.reply('Erreur lors de l\'éxécution de la commande !iss')
+	});
 }

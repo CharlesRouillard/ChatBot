@@ -30,6 +30,6 @@ module.exports = function(msg,isTag){
 		});
 	}
 	else{
-		msg.reply('Commande météo incorrect. Je comprend seulement : !meteo <city>\nJe comprend également : !blague et !image <query>');
+		msg.reply('Commande météo incorrect. Je comprend seulement : !meteo <city>\nJe comprend également : !blague, !image <query>, !iss et !yoda <sentence>');
 	}
 }

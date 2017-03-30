@@ -7,5 +7,7 @@ module.exports = function(msg){
         method: 'GET'
 	}).then(function(response){
     	msg.reply(et.decode(response.data[0].fact));
-	}).catch(console.log);
+	}).catch(function(fail){
+		msg.reply('Erreur lors de l\'éxécution de la commande !blague');
+	});
 }
