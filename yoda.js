@@ -1,8 +1,17 @@
 var axios = require('axios');
 
 module.exports = function(msg, isTag){
-	var cmd = cont.substring(0,6);
-	var sentence = cont.substring(6,cont.length);
+	if(isTag)
+	{
+		var cmd = cont.substring(15,21);
+		var sentence = cont.substring(21,cont.length);
+	}
+	else
+	{
+		var cmd = cont.substring(0,6);
+		var sentence = cont.substring(6,cont.length);
+	}
+	
 	if(cmd == '!yoda '){
 		axios.request({
 		    url: 'https://yoda.p.mashape.com/yoda?sentence=' + sentence,
