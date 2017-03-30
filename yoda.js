@@ -5,6 +5,9 @@ module.exports = function(msg, isTag){
 	{
 		var cmd = cont.substring(15,21);
 		var sentence = cont.substring(21,cont.length);
+		console.log(cmd);
+		console.log(sentence);
+		console.log(cmd == '!yoda ');
 	}
 	else
 	{
