@@ -32,11 +32,11 @@ module.exports = function(msg,isTag){
     				.overlayWith("sat.png")
     				.sharpen()
 					.withMetadata()
-					.webp({quality: 90})
+					.jpeg({quality: 90})
 					.toBuffer()
     				.then(function(outputBuffer){
     					console.log(outputBuffer);
-    					fs.writeFile("final.png",outputBuffer);
+    					fs.writeFile("final.jpeg",outputBuffer);
 					});
 				});
     		}
