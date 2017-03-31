@@ -54,8 +54,6 @@ module.exports = function(params){
 			image(msg,isTag);
 		}
 		else if(cont.includes('!iss')){
-			/*console.log("SEND IN BOT.JS");
-			msg.author.sendFile(msg.author,"sat.png","ISS Map","Affichage de l ISS en direct",function(err,mess){if(err) console.log(err);else console.log(mess);});*/
 			iss(msg);
 		}
 		else if(cont.includes('!yoda')){

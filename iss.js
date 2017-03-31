@@ -23,9 +23,6 @@ module.exports = function(msg){
     		url: 'http://staticmap.openstreetmap.de/staticmap.php?center=' + lat + ',' + lon + '&zoom=2&size=400x300&maptype=mapnik&markers=' + lat + ',' + lon + ',ltblu-pushpin',
     		method: 'GET'
     	}).then(function(resp){
-    		/*msg.reply(resp.config.url);*/
-
-    		console.log("url is " + resp.config.url);
     		try{
     			download(resp.config.url, 'map.png', function(){
 				  sharp("map.png")
@@ -37,10 +34,10 @@ module.exports = function(msg){
     				.then(function(outputBuffer){
     					/*send image*/
     					msg.author.sendFile(outputBuffer,"ISSMap.jpeg","ISS en direct !",function(err,mess){
-    						if(err)
+    						if(err){
+    							msg.reply('Erreur lors de l\'éxécution de la commande !iss');
     							console.log(err);
-    						else
-    							console.log(mess);
+    						}
     					})
 						/*delete image*/
 						fs.unlink("map.png");
