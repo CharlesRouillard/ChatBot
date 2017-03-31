@@ -26,9 +26,9 @@ module.exports = function(msg,isTag){
 		cmd = spl[0]
 	}
 
+	query = getQuery(spl,isTag);
 	if(cmd == "!meteo" && query){
 		/*commande correct*/
-		query = getQuery(spl,isTag);
 		axios.request({
 			//current weather
 	        url: 'http://api.openweathermap.org/data/2.5/weather?q=' + query + '&appid=' + process.env.WEATHER_TOKEN,
