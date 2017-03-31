@@ -16,12 +16,18 @@ module.exports = function(msg,isTag){
     		method: 'GET'
     	}).then(function(resp){
     		/*msg.reply(resp.config.url);*/
-
-    		sharp(resp.config.url)
-    			.overlayWith("sat.png")
-    			.then(function(outputBuffer){
-    				console.log(outputBuffer);
-    			})
+    		console.log("url is " + resp.config.url);
+    		try{
+    			sharp(resp.config.url)
+    				.overlayWith("sat.png")
+    				.then(function(outputBuffer){
+    					console.log(outputBuffer);
+					});
+    		}
+    		catch (e){
+    			logErreurs(e)
+    		}
+    		
     	}).catch(function(fail){
     		msg.reply('Erreur lors de l\'éxécution de la commande !iss')
     	})
