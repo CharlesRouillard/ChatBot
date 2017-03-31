@@ -18,11 +18,17 @@ module.exports = function(msg,isTag){
     		/*msg.reply(resp.config.url);*/
     		console.log("url is " + resp.config.url);
     		try{
-    			sharp(resp.config.url)
+    			/*sharp(resp.config.url)
     				.overlayWith("sat.png")
     				.then(function(outputBuffer){
     					console.log(outputBuffer);
-					});
+					});*/
+				sharp('sat.png')
+				  .resize(100, 100)
+				  .toFile('output.png', function(err) {
+				    // output.jpg is a 300 pixels wide and 200 pixels high image
+				    // containing a scaled and cropped version of input.jpg
+				  });
     		}
     		catch (e){
     			console.log(e);
