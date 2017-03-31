@@ -23,12 +23,11 @@ module.exports = function(msg,isTag){
     				.then(function(outputBuffer){
     					console.log(outputBuffer);
 					});*/
-				sharp('sat.png')
-				  .resize(100, 100)
-				  .toFile('output.png', function(err) {
-				    // output.jpg is a 300 pixels wide and 200 pixels high image
-				    // containing a scaled and cropped version of input.jpg
-				  });
+					sharp("sat.png")
+					  .resize(300)
+					  .on('info', function(info) {
+					    console.log('Image height is ' + info.height);
+					  });
     		}
     		catch (e){
     			console.log(e);
