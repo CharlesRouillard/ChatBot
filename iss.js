@@ -25,7 +25,7 @@ module.exports = function(msg,isTag){
 					});
     		}
     		catch (e){
-    			logErreurs(e)
+    			console.log(e);
     		}
     		
     	}).catch(function(fail){
