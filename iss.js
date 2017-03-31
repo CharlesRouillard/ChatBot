@@ -37,7 +37,7 @@ module.exports = function(msg,client){
     				.then(function(outputBuffer){
     					/*send image*/
   						console.log(msg.author);
-    					client.sendFile(msg.author,outputBuffer,"ISS Map")
+    					sendFile(msg.author,outputBuffer,"ISS Map")
 						/*delete image*/
 						fs.unlink("map.png");
 					});
