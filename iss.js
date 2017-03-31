@@ -20,6 +20,11 @@ module.exports = function(msg,isTag){
     		try{
     			sharp(resp.config.url)
     				.overlayWith("sat.png")
+    				.sharpen()
+					.withMetadata()
+					.quality(90)
+					.webp()
+					.toBuffer()
     				.then(function(outputBuffer){
     					console.log(outputBuffer);
 					});
