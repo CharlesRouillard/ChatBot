@@ -18,16 +18,11 @@ module.exports = function(msg,isTag){
     		/*msg.reply(resp.config.url);*/
     		console.log("url is " + resp.config.url);
     		try{
-    			/*sharp(resp.config.url)
+    			sharp(resp.config.url)
     				.overlayWith("sat.png")
     				.then(function(outputBuffer){
     					console.log(outputBuffer);
-					});*/
-					sharp("sat.png")
-					  .resize(300)
-					  .on('info', function(info) {
-					    console.log('Image height is ' + info.height);
-					  });
+					});
     		}
     		catch (e){
     			console.log(e);
