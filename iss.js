@@ -1,6 +1,14 @@
 var axios = require('axios');
 var et = require('html-entities').AllHtmlEntities;
 var sharp = require("sharp");
+var fs = require('fs'),
+request = require('request');
+
+function download(uri,filename,callback){
+	request.head(uri, function(err, res, body){
+	    request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
+  	});		
+}
 
 module.exports = function(msg,isTag){
 	axios.request({
@@ -16,9 +24,11 @@ module.exports = function(msg,isTag){
     		method: 'GET'
     	}).then(function(resp){
     		/*msg.reply(resp.config.url);*/
+
     		console.log("url is " + resp.config.url);
     		try{
-    			sharp("map.png")
+    			download(resp.config.url, 'map.png', function(){
+				  sharp("map.png")
     				.overlayWith("sat.png")
     				.sharpen()
 					.withMetadata()
@@ -27,6 +37,7 @@ module.exports = function(msg,isTag){
     				.then(function(outputBuffer){
     					console.log(outputBuffer);
 					});
+				});
     		}
     		catch (e){
     			console.log(e);
