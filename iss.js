@@ -36,7 +36,7 @@ module.exports = function(msg){
 					.toBuffer()
     				.then(function(outputBuffer){
     					/*send image*/
-    					msg.author.sendFile(outputBuffer,"ISS Map","ISS en direct !",function(err,mess){
+    					msg.author.sendFile(outputBuffer,"ISSMap.jpeg","ISS en direct !",function(err,mess){
     						if(err)
     							console.log(err);
     						else
