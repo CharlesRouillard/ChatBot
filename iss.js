@@ -10,7 +10,7 @@ function download(uri,filename,callback){
   	});		
 }
 
-module.exports = function(msg,client){
+module.exports = function(msg){
 	axios.request({
         url: 'https://api.wheretheiss.at/v1/satellites/25544',
         method: 'GET'
@@ -36,9 +36,12 @@ module.exports = function(msg,client){
 					.toBuffer()
     				.then(function(outputBuffer){
     					/*send image*/
-  						console.log(msg.author);
-  						console.log("CLIENT " + client);
-    					client.sendFile(msg.author,outputBuffer,"ISS Map")
+    					msg.author.sendFile(outputBuffer,"ISS Map","ISS en direct !",function(err,mess){
+    						if(err)
+    							console.log(err);
+    						else
+    							console.log(mess);
+    					})
 						/*delete image*/
 						fs.unlink("map.png");
 					});
