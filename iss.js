@@ -22,8 +22,7 @@ module.exports = function(msg,isTag){
     				.overlayWith("sat.png")
     				.sharpen()
 					.withMetadata()
-					.quality(90)
-					.jpeg()
+					.webp({quality: 90})
 					.toBuffer()
     				.then(function(outputBuffer){
     					console.log(outputBuffer);
