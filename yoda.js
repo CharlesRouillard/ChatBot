@@ -1,21 +1,34 @@
 var axios = require('axios');
 
+function getQuery(spl,isTag){
+	var query = "";
+	if(isTag){
+		for(var i = 2;i<spl.length;i++){
+			query += spl[i] + " ";
+		}
+	}
+	else{
+		for(var i = 1;i<spl.length;i++){
+			query += spl[i] + " ";
+		}
+	}
+	return query;
+}
+
 module.exports = function(msg, isTag){
+	var cmd,query;
+	spl = cont.split(" ");
 	if(isTag)
 	{
-		//pas terrible
-		var cmd = cont.substring(22,28);
-		var sentence = cont.substring(28,cont.length);
+		cmd = spl[1];
 	}
-	else
-	{
-		var cmd = cont.substring(0,6);
-		var sentence = cont.substring(6,cont.length);
+	else{
+		cmd = spl[0]
 	}
 	
-	if(cmd == '!yoda '){
+	if(cmd == '!yoda'){
 		axios.request({
-		    url: 'https://yoda.p.mashape.com/yoda?sentence=' + sentence,
+		    url: 'https://yoda.p.mashape.com/yoda?sentence=' + query,
 		    method: 'GET',
 		    headers: {
 		    	'X-Mashape-Key': process.env.YODA_TOKEN,
