@@ -36,6 +36,7 @@ module.exports = function(msg,isTag){
 					.toBuffer()
     				.then(function(outputBuffer){
     					console.log(outputBuffer);
+    					fs.writeFile("final.png",outputBuffer);
 					});
 				});
     		}
