@@ -26,7 +26,7 @@ module.exports = function(msg,isTag){
 		cmd = spl[0]
 	}
 
-	if(cmd == "!meteo"){
+	if(cmd == "!meteo" && query != ""){
 		/*commande correct*/
 		query = getQuery(spl,isTag);
 		axios.request({
