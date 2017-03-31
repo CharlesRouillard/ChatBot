@@ -54,6 +54,8 @@ module.exports = function(params){
 			image(msg,isTag);
 		}
 		else if(cont.includes('!iss')){
+			console.log("SEND IN BOT.JS");
+			self.bot.sendFile(msg.author,"map.png");
 			iss(msg,self.bot);
 		}
 		else if(cont.includes('!yoda')){
