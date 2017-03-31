@@ -1,8 +1,6 @@
 var express = require('express');
 var Bot = require('./bot.js');
 
-
-
 var bot = new Bot({
 	token: process.env.DISCORD_TOKEN
 })

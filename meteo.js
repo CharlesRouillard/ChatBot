@@ -1,21 +1,37 @@
 var axios = require('axios');
 
+function getQuery(spl,isTag){
+	var query = "";
+	if(isTag){
+		for(var i = 2;i<spl.length;i++){
+			query += spl[i] + " ";
+		}
+	}
+	else{
+		for(var i = 1;i<spl.length;i++){
+			query += spl[i] + " ";
+		}
+	}
+	return query;
+}
+
 module.exports = function(msg,isTag){
-	var city = undefined;
+	var cmd,query;
 	spl = cont.split(" ");
 	if(isTag)
 	{
-		if(spl.length == 3)
-			city = spl[2];
+		cmd = spl[1];
 	}
 	else{
-		if(spl.length == 2)
-			city = spl[1];
+		cmd = spl[0]
 	}
-	if(city){
+
+	if(cmd == "!meteo"){
+		/*commande correct*/
+		query = getQuery(spl,isTag);
 		axios.request({
 			//current weather
-	        url: 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + process.env.WEATHER_TOKEN,
+	        url: 'http://api.openweathermap.org/data/2.5/weather?q=' + query + '&appid=' + process.env.WEATHER_TOKEN,
 	        method: 'GET'
 		}).then(function(response){
 			var temp = (response.data.main.temp-273.15);
