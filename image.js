@@ -26,7 +26,7 @@ module.exports = function(msg,isTag){
 		cmd = spl[0]
 	}
 
-	console.log(query);
+	console.log(cmd);
 
 	if(cmd == "!image" && query){
 		query = getQuery(spl,isTag);
