@@ -18,7 +18,7 @@ module.exports = function(msg,isTag){
     		/*msg.reply(resp.config.url);*/
     		console.log("url is " + resp.config.url);
     		try{
-    			sharp(resp.config.url)
+    			sharp("map.png")
     				.overlayWith("sat.png")
     				.sharpen()
 					.withMetadata()
