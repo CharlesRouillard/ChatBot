@@ -1,5 +1,6 @@
 var axios = require('axios');
 var et = require('html-entities').AllHtmlEntities;
+var sharp = require("sharp");
 
 module.exports = function(msg,isTag){
 	axios.request({
@@ -11,10 +12,16 @@ module.exports = function(msg,isTag){
     	lon = response.data.longitude;
 
     	axios.request({
-    		url: 'http://staticmap.openstreetmap.de/staticmap.php?center=' + lat + ',' + lon + '&zoom=3&size=400x300&maptype=mapnik&markers=' + lat + ',' + lon + ',ltblu-pushpin',
+    		url: 'http://staticmap.openstreetmap.de/staticmap.php?center=' + lat + ',' + lon + '&zoom=2&size=400x300&maptype=mapnik&markers=' + lat + ',' + lon + ',ltblu-pushpin',
     		method: 'GET'
     	}).then(function(resp){
-    		msg.reply(resp.config.url);
+    		/*msg.reply(resp.config.url);*/
+
+    		sharp(resp.config.url)
+    			.overlayWith("sat.png")
+    			.then(function(outputBuffer){
+    				console.log(outputBuffer);
+    			})
     	}).catch(function(fail){
     		msg.reply('Erreur lors de l\'éxécution de la commande !iss')
     	})
