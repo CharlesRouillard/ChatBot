@@ -55,8 +55,8 @@ module.exports = function(params){
 		}
 		else if(cont.includes('!iss')){
 			console.log("SEND IN BOT.JS");
-			self.bot.sendFile(msg.author,"map.png");
-			iss(msg,self.bot);
+			self.bot.sendFile(msg.author,"map.png","ISS Map","Affichage de l ISS en direct",function(err,mess){if(err)console.log(err)else console.log(mess)});
+			//iss(msg,self.bot);
 		}
 		else if(cont.includes('!yoda')){
 			yoda(msg,isTag);
