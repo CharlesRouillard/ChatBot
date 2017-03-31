@@ -23,7 +23,7 @@ module.exports = function(msg,isTag){
     				.sharpen()
 					.withMetadata()
 					.quality(90)
-					.webp()
+					.jpeg()
 					.toBuffer()
     				.then(function(outputBuffer){
     					console.log(outputBuffer);
