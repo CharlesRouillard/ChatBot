@@ -16,10 +16,8 @@ function getQuery(spl,isTag){
 }
 
 module.exports = function(msg,isTag){
-
 	var cmd,query;
 	spl = cont.split(" ");
-
 	if(isTag)
 	{
 		cmd = spl[1];
@@ -27,6 +25,8 @@ module.exports = function(msg,isTag){
 	else{
 		cmd = spl[0]
 	}
+
+	console.log(query);
 
 	if(cmd == "!image" && query){
 		query = getQuery(spl,isTag);
