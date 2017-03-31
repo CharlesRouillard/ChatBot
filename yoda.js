@@ -26,7 +26,7 @@ module.exports = function(msg, isTag){
 		cmd = spl[0]
 	}
 	
-	if(cmd == '!yoda' && query != ""){
+	if(cmd == '!yoda' && query){
 		query = getQuery(spl,isTag);
 		axios.request({
 		    url: 'https://yoda.p.mashape.com/yoda?sentence=' + query,

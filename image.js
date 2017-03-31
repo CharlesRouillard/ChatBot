@@ -28,7 +28,7 @@ module.exports = function(msg,isTag){
 		cmd = spl[0]
 	}
 
-	if(cmd == "!image" && query != ""){
+	if(cmd == "!image" && query){
 		query = getQuery(spl,isTag);
 		axios.request({
 	        url: 'https://api.imgur.com/3/gallery/search?q=' + query,
