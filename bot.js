@@ -54,7 +54,7 @@ module.exports = function(params){
 			image(msg,isTag);
 		}
 		else if(cont.includes('!iss')){
-			iss(msg);
+			iss(msg,isTag);
 		}
 		else if(cont.includes('!yoda')){
 			yoda(msg,isTag);

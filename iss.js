@@ -10,7 +10,7 @@ function download(uri,filename,callback){
   	});		
 }
 
-module.exports = function(msg){
+module.exports = function(msg,isTag){
 	axios.request({
         url: 'https://api.wheretheiss.at/v1/satellites/25544',
         method: 'GET'
@@ -29,18 +29,29 @@ module.exports = function(msg){
     				.overlayWith("sat.png")
     				.sharpen()
 					.withMetadata()
-					.jpeg({quality: 90})
+					.jpeg({quality: 100})
 					.toBuffer()
     				.then(function(outputBuffer){
     					/*send image*/
-    					msg.author.sendFile(outputBuffer,"ISSMap.jpeg","ISS en direct !",function(err,mess){
-    						if(err){
-    							msg.reply('Erreur lors de l\'éxécution de la commande !iss');
-    							console.log(err);
-    						}
-    					})
-						/*delete image*/
-						fs.unlink("map.png");
+						console.log(outputBuffer);
+						if(isTag){
+    						msg.channel.sendFile(outputBuffer,"ISSMap.jpeg","ISS en direct !",function(err,mess){
+								console.log(mess);
+								if(err){
+									msg.reply('Erreur lors de l\'éxécution de la commande !iss');
+									console.log(err);
+								}
+    						});
+						}
+						else{
+							msg.author.sendFile(outputBuffer,"ISSMap.jpeg","ISS en direct !",function(err,mess){
+								console.log(mess);
+								if(err){
+									msg.reply('Erreur lors de l\'éxécution de la commande !iss');
+									console.log(err);
+								}
+    						});
+						}						
 					});
 				});
     		}
