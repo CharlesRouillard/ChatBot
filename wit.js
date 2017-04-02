@@ -2,22 +2,21 @@ var axios = require('axios');
 
 function getQuery(spl,isTag){
 	var query = "";
-	if(isTag){
-		for(var i = 2;i<spl.length;i++){
-			query += spl[i] + " ";
-		}
-	}
-	else{
-		for(var i = 1;i<spl.length;i++){
-			query += spl[i] + " ";
-		}
+	for(var i = 2;i<spl.length;i++){
+		query += spl[i] + " ";
 	}
 	return query;
 }
 
 module.exports = function(msg,isTag){
-	spl = cont.split(" ");
-	query = getQuery(spl,isTag);
+	var query;
+	if(!isTag)
+		query = cont;
+	else{
+		spl = cont.split(" ");
+		query = getQuery(spl,isTag);
+	}
+	
 	if(query){
 		axios.request({
 			//current weather
