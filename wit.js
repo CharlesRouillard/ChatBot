@@ -14,6 +14,7 @@ function getQuery(spl,isTag){
 }
 
 module.exports = function(msg,isTag){
+	spl = cont.split(" ");
 	query = getQuery(spl,isTag);
 	if(query){
 		axios.request({
