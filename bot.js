@@ -6,6 +6,7 @@ var meteo = require('./meteo.js');
 var image = require('./image.js');
 var iss = require('./iss.js');
 var yoda = require('./yoda.js');
+var wit = require('./wit.js');
 
 module.exports = function(params){
     var self = this;
@@ -54,7 +55,7 @@ module.exports = function(params){
 			image(msg,isTag);
 		}
 		else if(cont.includes('!iss')){
-			iss(msg);
+			iss(msg,isTag);
 		}
 		else if(cont.includes('!yoda')){
 			yoda(msg,isTag);
@@ -64,6 +65,8 @@ module.exports = function(params){
 				msg.reply('Hey ! Que puis-je faire pour vous ?');
 			}
 			msg.reply('Je n\'ai pas compris votre demande ! Je comprend !blague, !meteo <city>, !image <query>');*/
+			/*LANGAGE NATUREL*/
+			wit(msg,isTag);
 		}
 	}
 }
