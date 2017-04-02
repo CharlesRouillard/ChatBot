@@ -28,8 +28,8 @@ module.exports = function(msg,isTag){
 	          Accept: 'application/json'
 	        }
 		}).then(function(response){
-			console.log(response.location);
-			console.log(response.intent);
+			console.log(response.data);
+			console.log(response.data.intent);
 		}).catch(function(fail){
 			msg.reply('Un problème est survenu (La ville est peut être erroné ou incorrect)');
 		});
