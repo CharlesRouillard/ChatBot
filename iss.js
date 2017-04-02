@@ -51,9 +51,9 @@ module.exports = function(msg,isTag){
                         /*send image*/
                         out = outputBuffer;
                         var date = getDate();
-                        var fn = "ISSMap.jpeg" + date;
+                        var fn = "ISSMap" + date +  ".jpeg";
                         if(isTag){
-                            msg.channel.sendFile(out,fn,"Position de l\'ISS le " + fn,function(err,mess){
+                            msg.channel.sendFile(out,fn,"Position de l\'ISS le " + date,function(err,mess){
                                 if(err){
                                     msg.reply('Erreur lors de l\'éxécution de la commande !iss');
                                     console.log(err + ' ' + mess);
