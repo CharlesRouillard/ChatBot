@@ -16,7 +16,7 @@ module.exports = function(msg,isTag){
 		spl = cont.split(" ");
 		query = getQuery(spl,isTag);
 	}
-	
+
 	if(query){
 		axios.request({
 			//current weather
@@ -28,7 +28,7 @@ module.exports = function(msg,isTag){
 	        }
 		}).then(function(response){
 			console.log(response.data);
-			console.log(response.data.intent);
+			console.log(response.data.entities.intent);
 		}).catch(function(fail){
 			msg.reply('Un problème est survenu (La ville est peut être erroné ou incorrect)');
 		});
