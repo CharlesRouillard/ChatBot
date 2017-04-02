@@ -10,10 +10,13 @@ function download(uri,filename,callback){
     });     
 }
 
-function getDate(){
+function getDatetime(){
     var today = new Date();
     var dd = today.getDate();
     var mm = today.getMonth()+1; //January is 0!
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds(); 
 
     var yyyy = today.getFullYear();
     if(dd<10){
@@ -22,7 +25,7 @@ function getDate(){
     if(mm<10){
         mm='0'+mm;
     } 
-    var today = dd+'/'+mm+'/'+yyyy;
+    var today = dd+'/'+mm+'/'+yyyy+":" + h + ":" + m + ":" + s;
     return today;
 }
 
@@ -50,7 +53,7 @@ module.exports = function(msg,isTag){
                     .then(function(outputBuffer){
                         /*send image*/
                         out = outputBuffer;
-                        var date = getDate();
+                        var date = getDatetime();
                         var fn = "ISSMap" + date +  ".jpeg";
                         if(isTag){
                             msg.channel.sendFile(out,fn,"Position de l\'ISS le " + date,function(err,mess){
@@ -61,7 +64,7 @@ module.exports = function(msg,isTag){
                             });
                         }
                         else{
-                            msg.author.sendFile(out,fn,"Position de l\'ISS le " + fn,function(err,mess){
+                            msg.author.sendFile(out,fn,"Position de l\'ISS le " + date,function(err,mess){
                                 console.log(mess);
                                 if(err){
                                     msg.reply('Erreur lors de l\'éxécution de la commande !iss');
