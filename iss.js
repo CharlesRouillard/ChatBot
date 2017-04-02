@@ -14,7 +14,7 @@ function getDatetime(){
     var today = new Date();
     var dd = today.getDate();
     var mm = today.getMonth()+1; //January is 0!
-    var h = today.getHours();
+    var h = today.getHours()+2;
     var m = today.getMinutes();
     var s = today.getSeconds(); 
 
@@ -47,7 +47,6 @@ module.exports = function(msg,isTag){
                   sharp("map.png")
                     .overlayWith("sat.png")
                     .jpeg({quality: 100})
-                    .toBuffer()
                     .then(function(outputBuffer){
                         /*send image*/
                         out = outputBuffer;
