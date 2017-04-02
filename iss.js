@@ -52,9 +52,9 @@ module.exports = function(msg,isTag){
                         /*send image*/
                         //out = outputBuffer;
                         var date = getDatetime();
-                        //fn = "ISSMap" + date +  ".jpeg";
+                        fn = "ISSMap" + date +  ".png";
                         if(isTag){
-                            msg.channel.sendFile("final.png","Position de l\'ISS le " + date,function(err,mess){
+                            msg.channel.sendFile("final.png",fn,"Position de l\'ISS le " + date,function(err,mess){
                                 if(err){
                                     msg.reply('Erreur lors de l\'éxécution de la commande !iss');
                                     console.log(err + ' ' + mess);
@@ -62,7 +62,7 @@ module.exports = function(msg,isTag){
                             });
                         }
                         else{
-                            msg.author.sendFile("final.png","Position de l\'ISS le " + date,function(err,mess){
+                            msg.author.sendFile("final.png",fn,"Position de l\'ISS le " + date,function(err,mess){
                                 console.log(mess);
                                 if(err){
                                     msg.reply('Erreur lors de l\'éxécution de la commande !iss');
