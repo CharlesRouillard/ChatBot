@@ -46,14 +46,15 @@ module.exports = function(msg,isTag){
                 download(resp.config.url, 'map.png', function(){
                   sharp("map.png")
                     .overlayWith("sat.png")
-                    .jpeg({quality: 100})
-                    .then(function(outputBuffer){
+                    .png()
+                    .toFile("final.png")
+                    .then(function(e){
                         /*send image*/
-                        out = outputBuffer;
+                        //out = outputBuffer;
                         var date = getDatetime();
-                        fn = "ISSMap" + date +  ".jpeg";
+                        //fn = "ISSMap" + date +  ".jpeg";
                         if(isTag){
-                            msg.channel.sendFile(out,fn,"Position de l\'ISS le " + date,function(err,mess){
+                            msg.channel.sendFile(out,"final.png","Position de l\'ISS le " + date,function(err,mess){
                                 if(err){
                                     msg.reply('Erreur lors de l\'éxécution de la commande !iss');
                                     console.log(err + ' ' + mess);
@@ -61,7 +62,7 @@ module.exports = function(msg,isTag){
                             });
                         }
                         else{
-                            msg.author.sendFile(out,fn,"Position de l\'ISS le " + date,function(err,mess){
+                            msg.author.sendFile(out,"final.png","Position de l\'ISS le " + date,function(err,mess){
                                 console.log(mess);
                                 if(err){
                                     msg.reply('Erreur lors de l\'éxécution de la commande !iss');
@@ -70,7 +71,7 @@ module.exports = function(msg,isTag){
                             });
                         }
                         delete out;  
-                        delete fn;                   
+                        //delete fn;                   
                     });
                 });
             }
