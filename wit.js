@@ -1,3 +1,5 @@
+var axios = require('axios');
+
 function getQuery(spl,isTag){
 	var query = "";
 	if(isTag){
