@@ -46,15 +46,13 @@ module.exports = function(msg,isTag){
                 download(resp.config.url, 'map.png', function(){
                   sharp("map.png")
                     .overlayWith("sat.png")
-                    .sharpen()
-                    .withMetadata()
                     .jpeg({quality: 100})
                     .toBuffer()
                     .then(function(outputBuffer){
                         /*send image*/
                         out = outputBuffer;
                         var date = getDatetime();
-                        var fn = "ISSMap" + date +  ".jpeg";
+                        fn = "ISSMap" + date +  ".jpeg";
                         if(isTag){
                             msg.channel.sendFile(out,fn,"Position de l\'ISS le " + date,function(err,mess){
                                 if(err){
@@ -72,7 +70,8 @@ module.exports = function(msg,isTag){
                                 }
                             });
                         }
-                        delete out;                     
+                        delete out;  
+                        delete fn;                   
                     });
                 });
             }
