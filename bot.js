@@ -64,6 +64,8 @@ module.exports = function(params){
 				msg.reply('Hey ! Que puis-je faire pour vous ?');
 			}
 			msg.reply('Je n\'ai pas compris votre demande ! Je comprend !blague, !meteo <city>, !image <query>');*/
+			/*LANGAGE NATUREL*/
+			wit(msg,isTag);
 		}
 	}
 }
