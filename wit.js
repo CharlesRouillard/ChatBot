@@ -31,6 +31,7 @@ module.exports = function(msg,isTag){
 	if(query){
 		client.message(query,{})
 		.then((data) => {
+			console.log(data.entities.intent[0].value);
 			resp = exec(data);
 			msg.reply(resp);
 		})
