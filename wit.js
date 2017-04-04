@@ -1,4 +1,7 @@
 var axios = require('axios');
+const {Wit, log} = require("node-wit");
+
+const client = new Wit({accessToken: process.env.WIT_TOKEN});
 
 function getQuery(spl,isTag){
 	var query = "";
@@ -18,7 +21,7 @@ module.exports = function(msg,isTag){
 	}
 
 	if(query){
-		axios.request({
+		/*axios.request({
 			//current weather
 	        url: 'http://api.wit.ai/message?q=' + query,
 	        method: 'GET',
@@ -31,6 +34,11 @@ module.exports = function(msg,isTag){
 			console.log(response.data.entities.intent);
 		}).catch(function(fail){
 			msg.reply('Un problème est survenu (La ville est peut être erroné ou incorrect)');
-		});
+		});*/
+		client.message(query,{})
+		.then((data) => {
+			console.log("GOT IT => " + JSON.stringify(data));
+		})
+		.catch(console.error);
 	}
 }
