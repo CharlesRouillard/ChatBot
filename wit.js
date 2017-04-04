@@ -23,7 +23,7 @@ module.exports = function(msg,isTag){
 	if(query){
 		client.message(query,{})
 		.then((data) => {
-			console.log(data.entities);
+			console.log(data.entities.intent);
 		})
 		.catch(console.error);
 	}
