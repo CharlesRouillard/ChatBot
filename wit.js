@@ -21,23 +21,9 @@ module.exports = function(msg,isTag){
 	}
 
 	if(query){
-		/*axios.request({
-			//current weather
-	        url: 'http://api.wit.ai/message?q=' + query,
-	        method: 'GET',
-	        headers: {
-	          Authorization: 'Bearer ' + process.env.WIT_TOKEN,
-	          Accept: 'application/json'
-	        }
-		}).then(function(response){
-			console.log(response.data);
-			console.log(response.data.entities.intent);
-		}).catch(function(fail){
-			msg.reply('Un problème est survenu (La ville est peut être erroné ou incorrect)');
-		});*/
 		client.message(query,{})
 		.then((data) => {
-			console.log("GOT IT => " + JSON.stringify(data));
+			console.log(data);
 		})
 		.catch(console.error);
 	}
