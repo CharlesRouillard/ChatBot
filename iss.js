@@ -69,9 +69,7 @@ module.exports = function(msg,isTag){
                                     console.log(err + ' ' + mess);
                                 }
                             });
-                        }
-                        //delete out;  
-                        //delete fn;                   
+                        }                 
                     });
                 });
             }
