@@ -13,8 +13,13 @@ function getQuery(spl,isTag){
 
 function exec(data){
 	var resp = "";
-	if(data.entities.intent[0].value == "hello"){
-		resp = "Bien le bonjour, humain ! Je suis BuckowskyBot ! Un bot discord qui comprend plusieurs commandes : \n- !blague - Permet d'afficher une Chuck Norris fact !\n- !image <string> - Qui permet d'afficher une image en relation avec <string>\n- !meteo <city> - Permet d'afficher la température actuelle de <city>\n- !iss - Affiche une carte du monde avec la position actuelle de l'ISS\n- !yoda <quote> - Petit délire... Transforme n'importe quelle phrase en une phrase façon Maitre Yoda !"
+	if(data.entities.intent[0].value){
+		if(data.entities.intent[0].value == "hello"){
+			resp = "Bien le bonjour, humain ! Je suis BuckowskyBot ! Un bot discord qui comprend plusieurs commandes : \n- !blague - Permet d'afficher une Chuck Norris fact !\n- !image <string> - Qui permet d'afficher une image en relation avec <string>\n- !meteo <city> - Permet d'afficher la température actuelle de <city>\n- !iss - Affiche une carte du monde avec la position actuelle de l'ISS\n- !yoda <quote> - Petit délire... Transforme n'importe quelle phrase en une phrase façon Maitre Yoda !"
+		}
+	}
+	else{
+		resp = "Desolé humain, je ne comprend pas ta requète !"
 	}
 	return resp;
 }
@@ -32,8 +37,8 @@ module.exports = function(msg,isTag){
 		client.message(query,{})
 		.then((data) => {
 			console.log(data);
-			resp = exec(data);
-			msg.reply(resp);
+			//resp = exec(data);
+			//msg.reply(resp);
 		})
 		.catch(console.error);
 	}
