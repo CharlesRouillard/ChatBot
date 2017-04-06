@@ -20,7 +20,7 @@ function exec(data,msg){
 			resp = "Bien le bonjour, humain ! Je suis BuckowskyBot ! Un bot discord qui comprend plusieurs commandes : \n- !blague - Permet d'afficher une Chuck Norris fact !\n- !image <string> - Qui permet d'afficher une image en relation avec <string>\n- !meteo <city> - Permet d'afficher la température actuelle de <city>\n- !iss - Affiche une carte du monde avec la position actuelle de l'ISS\n- !yoda <quote> - Petit délire... Transforme n'importe quelle phrase en une phrase façon Maitre Yoda !"
 		}
 		else if(intent == "temps"){
-			if(data.entities.location[0].value){
+			if(data.entities.location){
 				var query = data.entities.location[0].value;
 				axios.request({
 			        url: 'http://api.openweathermap.org/data/2.5/weather?q=' + query + '&appid=' + process.env.WEATHER_TOKEN,
