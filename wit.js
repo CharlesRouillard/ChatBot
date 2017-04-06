@@ -22,7 +22,7 @@ function exec(data,isTag,msg){
 		else if(intent == "temps" && data.entities.location[0].value){
 			if(data.entities.location[0].value){
 				if(isTag)
-					meteo(msg"@BuckowskyBot#7984 !meteo " + data.entities.location[0].value);
+					meteo(msg,"@BuckowskyBot#7984 !meteo " + data.entities.location[0].value);
 				else
 					meteo(msg,"!meteo " + data.entities.location[0].value)	
 			}
