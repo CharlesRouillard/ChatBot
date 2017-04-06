@@ -50,8 +50,8 @@ module.exports = function(msg,isTag){
 		client.message(query,{})
 		.then((data) => {
 			console.log(data.entities);
-			//resp = exec(data,isTag,msg);
-			//msg.reply(resp);
+			resp = exec(data,isTag,msg);
+			msg.reply(resp);
 		})
 		.catch(console.error);
 	}
