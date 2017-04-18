@@ -15,7 +15,7 @@ function getQuery(spl,isTag){
 function exec(data,msg){
 	var resp = "";
 	var intent = data.entities.intent[0].value;
-	if(intent){
+	if(data && data.entities && data.entities.intent && intent){
 		if(intent == "hello"){
 			resp = "Bien le bonjour, humain ! Je suis BuckowskyBot ! Un bot discord qui comprend plusieurs commandes : \n- !blague - Permet d'afficher une Chuck Norris fact !\n- !image <string> - Qui permet d'afficher une image en relation avec <string>\n- !meteo <city> - Permet d'afficher la température actuelle de <city>\n- !iss - Affiche une carte du monde avec la position actuelle de l'ISS\n- !yoda <quote> - Petit délire... Transforme n'importe quelle phrase en une phrase façon Maitre Yoda !"
 		}
@@ -35,7 +35,7 @@ function exec(data,msg){
 			    	msg.reply("In " + response.data.name + " the current temperature is " + temp + "°C\nThe minimal temperature is " + tempMin + "°C and the maximal is " + tempMax + "°C\n");
 				}).catch(function(fail){
 					msg.reply('Un problème est survenu (La ville est peut être erroné ou incorrect)');
-				});	
+				});
 			}
 			else{
 				msg.reply("Executer la commande !meteo suivi du nom de votre ville !");
