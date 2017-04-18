@@ -2,6 +2,8 @@ var axios = require('axios');
 var meteo = require("./meteo.js");
 const {Wit, log} = require("node-wit");
 
+var loc = false;
+
 const client = new Wit({accessToken: process.env.WIT_TOKEN});
 
 function getQuery(spl){
@@ -21,6 +23,7 @@ function exec(data,msg){
 		}
 		else if(intent == "temps"){
 			if(data.entities.location){
+				loc = true;
 				var query = data.entities.location[0].value;
 				axios.request({
 			        url: 'http://api.openweathermap.org/data/2.5/weather?q=' + query + '&appid=' + process.env.WEATHER_TOKEN,
@@ -32,9 +35,9 @@ function exec(data,msg){
 					tempMin = Math.round(tempMin *10)/10;
 					var tempMax = (response.data.main.temp_max-273.15);
 					tempMax = Math.round(tempMax *10)/10;
-			    	resp = "In " + response.data.name + " the current temperature is " + temp + "°C\nThe minimal temperature is " + tempMin + "°C and the maximal is " + tempMax + "°C\n";
+			    	msg.reply("In " + response.data.name + " the current temperature is " + temp + "°C\nThe minimal temperature is " + tempMin + "°C and the maximal is " + tempMax + "°C\n");
 				}).catch(function(fail){
-					resp = 'Un problème est survenu (La ville est peut être erroné ou incorrect)';
+					msg.reply('Un problème est survenu (La ville est peut être erroné ou incorrect)');
 				});
 			}
 			else{
@@ -61,7 +64,9 @@ module.exports = function(msg,isTag){
 		client.message(query,{})
 		.then((data) => {
 			resp = exec(data,msg);
-			msg.reply(resp);
+			if(!loc)
+				msg.reply(resp);
+			loc = false;
 		})
 		.catch(console.error);
 	}
