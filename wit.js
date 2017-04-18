@@ -32,13 +32,13 @@ function exec(data,msg){
 					tempMin = Math.round(tempMin *10)/10;
 					var tempMax = (response.data.main.temp_max-273.15);
 					tempMax = Math.round(tempMax *10)/10;
-			    	msg.reply("In " + response.data.name + " the current temperature is " + temp + "°C\nThe minimal temperature is " + tempMin + "°C and the maximal is " + tempMax + "°C\n");
+			    	resp = "In " + response.data.name + " the current temperature is " + temp + "°C\nThe minimal temperature is " + tempMin + "°C and the maximal is " + tempMax + "°C\n";
 				}).catch(function(fail){
-					msg.reply('Un problème est survenu (La ville est peut être erroné ou incorrect)');
+					resp = 'Un problème est survenu (La ville est peut être erroné ou incorrect)';
 				});
 			}
 			else{
-				msg.reply("Executer la commande !meteo suivi du nom de votre ville !");
+				resp = "Executer la commande !meteo suivi du nom de votre ville !";
 			}
 		}
 	}
@@ -56,7 +56,7 @@ module.exports = function(msg,isTag){
 		spl = cont.split(" ");
 		query = getQuery(spl);
 	}
-	
+
 	if(query){
 		client.message(query,{})
 		.then((data) => {
